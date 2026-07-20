@@ -53,11 +53,12 @@ st.markdown("""
 # ---------------- Feature definitions ----------------
 TARGET = "HAI"
 
+# 注意：FEATURES 必须与 CSV 列名完全一致（不带单位）
 FEATURES = [
     "Duration of Surgery",
-    "Post Operative WBC (×10⁹/L)",
+    "Post Operative WBC",
     "Post Operative Neutrophil Percentage",
-    "Cerebrospinal Fluid WBC (×10⁶/L)",
+    "Cerebrospinal Fluid WBC",
     "Cerebrospinal Fluid Characteristic",
     "Post Operative Cranial Hypertension",
     "Cerebrospinal Fluid Glucose Abnormality",
@@ -67,15 +68,21 @@ FEATURES = [
     "Use of Immuno-suppressive Drugs",
 ]
 
+# 显示给用户看的标签（可带单位），key 必须是上面的 CSV 列名
+LABELS = {
+    "Post Operative WBC": "Post Operative WBC (×10⁹/L)",
+    "Cerebrospinal Fluid WBC": "Cerebrospinal Fluid WBC (×10⁶/L)",
+}
+
 # 选项映射：label -> 编码值
 CATEGORICAL = {
     "Duration of Surgery": {
         "< 2 h": 1, "2–3 h": 2, "3–4 h": 3, "4–5 h": 4, "≥ 5 h": 5},
-    "Post Operative WBC (×10⁹/L)": {
+    "Post Operative WBC": {
         "< 10": 1, "10–20": 2, "≥ 20": 3},
     "Post Operative Neutrophil Percentage": {
         "40–70 %": 1, "70–80 %": 2, "≥ 80 %": 3},
-    "Cerebrospinal Fluid WBC (×10⁶/L)": {
+    "Cerebrospinal Fluid WBC": {
         "< 10": 1, "10–100": 2, "100–1000": 3, "1000–10000": 4, "≥ 10000": 5},
     "Cerebrospinal Fluid Characteristic": {
         "Clear": 0, "Turbid": 1},
@@ -111,7 +118,8 @@ with col_in:
     inputs = {}
     for feat in FEATURES:
         opts = list(CATEGORICAL[feat].keys())
-        choice = st.selectbox(feat, opts, key=feat)
+        label = LABELS.get(feat, feat)
+        choice = st.selectbox(label, opts, key=feat)
         inputs[feat] = CATEGORICAL[feat][choice]
     predict = st.button("🩺  Predict Risk", type="primary", use_container_width=True)
     st.markdown('</div>', unsafe_allow_html=True)
