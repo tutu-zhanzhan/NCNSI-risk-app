@@ -55,9 +55,9 @@ TARGET = "HAI"
 
 FEATURES = [
     "Duration of Surgery",
-    "Post Operative WBC",
+    "Post Operative WBC (×10⁹/L)",
     "Post Operative Neutrophil Percentage",
-    "Cerebrospinal Fluid WBC",
+    "Cerebrospinal Fluid WBC (×10⁶/L)",
     "Cerebrospinal Fluid Characteristic",
     "Post Operative Cranial Hypertension",
     "Cerebrospinal Fluid Glucose Abnormality",
@@ -71,11 +71,11 @@ FEATURES = [
 CATEGORICAL = {
     "Duration of Surgery": {
         "< 2 h": 1, "2–3 h": 2, "3–4 h": 3, "4–5 h": 4, "≥ 5 h": 5},
-    "Post Operative WBC": {
+    "Post Operative WBC (×10⁹/L)": {
         "< 10": 1, "10–20": 2, "≥ 20": 3},
     "Post Operative Neutrophil Percentage": {
         "40–70 %": 1, "70–80 %": 2, "≥ 80 %": 3},
-    "Cerebrospinal Fluid WBC": {
+    "Cerebrospinal Fluid WBC (×10⁶/L)": {
         "< 10": 1, "10–100": 2, "100–1000": 3, "1000–10000": 4, "≥ 10000": 5},
     "Cerebrospinal Fluid Characteristic": {
         "Clear": 0, "Turbid": 1},
